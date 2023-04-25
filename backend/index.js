@@ -14,6 +14,8 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+//Post new product
+//Create API
 app.post("/create", async (req, res) => {
   const newProduct = new Product({
     title: req.body.title,
@@ -32,11 +34,15 @@ app.post("/create", async (req, res) => {
   res.send("Product saved to the database!");
 });
 
+//Get product from database
+//Get API
 app.get("/read", async (req, res) => {
   const productList = await Product.find();
   res.send(JSON.stringify(productList));
 });
 
+//Update a product
+//Put API
 app.put("/update/:id", async (req, res) => {
   const product_id = req.params.id;
   await Product.findByIdAndUpdate(product_id, {
@@ -55,6 +61,8 @@ app.put("/update/:id", async (req, res) => {
   res.send("Product updated successfully!");
 });
 
+//Delete a product
+//Delete API
 app.delete("/delete/:id", async (req, res) => {
   const product_id = req.params.id;
   await Product.findByIdAndDelete(product_id);
