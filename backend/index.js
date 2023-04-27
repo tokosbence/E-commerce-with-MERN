@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const { Product } = require("./Models/products");
+const cors = require("cors");
 const app = express();
 const port = 5000;
 
@@ -10,6 +11,7 @@ mongoose
   .catch((err) => console.error("Could not connect to MongoDB..."));
 
 app.use(express.json());
+app.use(cors());
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
