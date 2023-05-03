@@ -4,11 +4,33 @@ import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
+import { Button } from "@mui/material";
+import { useNavigate } from "react-router";
+
+import axios from "axios";
 
 const ProductCard = (props) => {
+  const navigate = useNavigate();
   const [product, setProduct] = useState(props.product);
+
+  const handleUpdate = (id) => {
+    navigate("/update/" + id);
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      const response = await axios.delete("http://localhost:5000/delete/" + id);
+      console.log(response.data);
+      if (response.data === "Product deleted!") {
+        props.getProduct();
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <React.Fragment>
@@ -54,6 +76,24 @@ const ProductCard = (props) => {
             </Stack>
           </Stack>
         </CardContent>
+        <CardActions>
+          <Stack direction="row" gap={2}>
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={() => handleUpdate(product._id)}
+            >
+              Update
+            </Button>
+            <Button
+              color="error"
+              variant="contained"
+              onClick={() => handleDelete(product._id)}
+            >
+              Delete
+            </Button>
+          </Stack>
+        </CardActions>
       </Card>
     </React.Fragment>
   );

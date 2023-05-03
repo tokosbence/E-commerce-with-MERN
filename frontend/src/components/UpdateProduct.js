@@ -1,7 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Grid, Paper, TextField, Typography, Button } from "@mui/material";
 
-const UpdateProduct = (props) => {
-  const [productData, setProductData] = useState();
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
+
+const UpdateProduct = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [productData, setProductData] = useState({});
+
+  useEffect(() => {
+    getProduct();
+  }, []);
+
+  const getProduct = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/get/" + id);
+      console.log(response.data);
+      setProductData(response.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   const handleInputChanges = (event) => {
     const { name, value } = event.target;
@@ -9,20 +29,18 @@ const UpdateProduct = (props) => {
     setProductData({ ...productData, [name]: value });
   };
 
-  /*
-      const handleUpdate = async () => {
-        console.log(productData);
-        try {
-          const response = await axios.put("http://localhost:5000/create", {
-            data: productData,
-          });
-          if (response.data === "Product saved to the database!") {
-            navigate("/");
-          }
-        } catch (e) {
-          console.log(e);
-        }
-      };*/
+  const handleUpdate = async () => {
+    try {
+      const response = await axios.put("http://localhost:5000/update/" + id, {
+        data: productData,
+      });
+      if (response.data === "Product updated successfully!") {
+        navigate("/");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <React.Fragment>
@@ -61,7 +79,7 @@ const UpdateProduct = (props) => {
                         InputLabelProps={{
                           shrink: true,
                         }}
-                        value={productData.title}
+                        value={productData.title || ""}
                         name="title"
                         onChange={handleInputChanges}
                       />
@@ -74,7 +92,7 @@ const UpdateProduct = (props) => {
                         InputLabelProps={{
                           shrink: true,
                         }}
-                        value={productData.brand}
+                        value={productData.brand || ""}
                         name="brand"
                         onChange={handleInputChanges}
                       />
@@ -87,7 +105,7 @@ const UpdateProduct = (props) => {
                         InputLabelProps={{
                           shrink: true,
                         }}
-                        value={productData.category}
+                        value={productData.category || ""}
                         name="category"
                         onChange={handleInputChanges}
                       />
@@ -100,7 +118,7 @@ const UpdateProduct = (props) => {
                         InputLabelProps={{
                           shrink: true,
                         }}
-                        value={productData.description}
+                        value={productData.description || ""}
                         name="description"
                         onChange={handleInputChanges}
                       />
@@ -114,7 +132,7 @@ const UpdateProduct = (props) => {
                           shrink: true,
                         }}
                         type="number"
-                        value={productData.discountPercentage}
+                        value={productData.discountPercentage || ""}
                         name="discountPercentage"
                         onChange={handleInputChanges}
                       />
@@ -131,7 +149,7 @@ const UpdateProduct = (props) => {
                         InputLabelProps={{
                           shrink: true,
                         }}
-                        value={productData.images}
+                        value={productData.images || ""}
                         name="images"
                         onChange={handleInputChanges}
                       />
@@ -145,7 +163,7 @@ const UpdateProduct = (props) => {
                           shrink: true,
                         }}
                         type="number"
-                        value={productData.price}
+                        value={productData.price || ""}
                         name="price"
                         onChange={handleInputChanges}
                       />
@@ -159,7 +177,7 @@ const UpdateProduct = (props) => {
                           shrink: true,
                         }}
                         type="number"
-                        value={productData.rating}
+                        value={productData.rating || ""}
                         name="rating"
                         onChange={handleInputChanges}
                       />
@@ -173,7 +191,7 @@ const UpdateProduct = (props) => {
                           shrink: true,
                         }}
                         type="number"
-                        value={productData.stock}
+                        value={productData.stock || ""}
                         name="stock"
                         onChange={handleInputChanges}
                       />
@@ -186,7 +204,7 @@ const UpdateProduct = (props) => {
                         InputLabelProps={{
                           shrink: true,
                         }}
-                        value={productData.thumbnail}
+                        value={productData.thumbnail || ""}
                         name="thumbnail"
                         onChange={handleInputChanges}
                       />
