@@ -41,6 +41,13 @@ app.get("/read", async (req, res) => {
   res.send(JSON.stringify(productList));
 });
 
+//Get a single product by id
+app.get("/get/:id", async (req, res) => {
+  const product_id = req.params.id;
+  const product = await Product.findById(product_id);
+  res.send(JSON.stringify(product));
+});
+
 //Update a product
 //Put API
 app.put("/update/:id", async (req, res) => {
