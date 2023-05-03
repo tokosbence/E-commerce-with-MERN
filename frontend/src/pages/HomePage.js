@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+import NavBar from "../components/NavBar";
 import ProductCard from "../components/ProductCard";
 
 const HomePage = () => {
@@ -22,6 +23,7 @@ const HomePage = () => {
 
   return (
     <React.Fragment>
+      <NavBar />
       {productList.length !== 0 &&
         productList.map((product) => <ProductCard product={product} />)}
     </React.Fragment>
