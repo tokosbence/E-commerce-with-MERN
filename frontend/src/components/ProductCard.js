@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -9,12 +10,21 @@ import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 import axios from "axios";
 
 const ProductCard = (props) => {
   const navigate = useNavigate();
   const [product, setProduct] = useState(props.product);
+  const [token, setToken] = useState();
+  const [isAdmin, setIsAdmin] = useState();
+  const amountInputRef = useRef();
+
+  useEffect(() => {
+    setToken(localStorage.getItem("token"));
+    setIsAdmin(localStorage.getItem("isAdmin"));
+  }, [token]);
 
   const handleUpdate = (id) => {
     navigate("/update/" + id);
@@ -76,23 +86,50 @@ const ProductCard = (props) => {
             </Stack>
           </Stack>
         </CardContent>
+
         <CardActions>
-          <Stack direction="row" gap={2}>
-            <Button
-              color="primary"
-              variant="contained"
-              onClick={() => handleUpdate(product._id)}
-            >
-              Update
-            </Button>
-            <Button
-              color="error"
-              variant="contained"
-              onClick={() => handleDelete(product._id)}
-            >
-              Delete
-            </Button>
-          </Stack>
+          {token && isAdmin ? (
+            <Stack direction="row" gap={2}>
+              <Button
+                color="primary"
+                variant="contained"
+                onClick={() => handleUpdate(product._id)}
+              >
+                Update
+              </Button>
+              <Button
+                color="error"
+                variant="contained"
+                onClick={() => handleDelete(product._id)}
+              >
+                Delete
+              </Button>
+            </Stack>
+          ) : (
+            <>
+              <Stack direction="row" spacing={2}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  endIcon={<AddShoppingCartIcon />}
+                  // onClick={addToCartHandler}
+                >
+                  + Add
+                </Button>
+                <TextField
+                  inputRef={amountInputRef}
+                  sx={{ width: 70 }}
+                  label="Amount"
+                  id={"amount_" + props.id}
+                  type="number"
+                  min={1}
+                  max={5}
+                  step={1}
+                  defaultValue={1}
+                />
+              </Stack>
+            </>
+          )}
         </CardActions>
       </Card>
     </React.Fragment>

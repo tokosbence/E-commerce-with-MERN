@@ -14,7 +14,7 @@ const HomePage = () => {
 
   const getProduct = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/read");
+      const response = await axios.get("http://localhost:5000/product");
       setProductList(response.data);
       console.log(response.data);
     } catch (e) {

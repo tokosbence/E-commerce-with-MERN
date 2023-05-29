@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -8,6 +8,13 @@ import Button from "@mui/material/Button";
 
 const NavBar = () => {
   const navigate = useNavigate();
+  const [token, setToken] = useState();
+  const [isAdmin, setIsAdmin] = useState();
+
+  useEffect(() => {
+    setToken(localStorage.getItem("token"));
+    setIsAdmin(localStorage.getItem("isAdmin"));
+  }, [token]);
 
   const goToHome = () => {
     navigate("/");
@@ -15,6 +22,15 @@ const NavBar = () => {
 
   const goToAddProduct = () => {
     navigate("/addProduct");
+  };
+
+  const goToLogin = () => {
+    navigate("/login");
+  };
+
+  const logOut = () => {
+    localStorage.clear();
+    navigate("/");
   };
 
   return (
@@ -34,9 +50,20 @@ const NavBar = () => {
             <Button color="inherit" onClick={goToHome}>
               Home
             </Button>
-            <Button color="inherit" onClick={goToAddProduct}>
-              Add product
-            </Button>
+            {isAdmin && (
+              <Button color="inherit" onClick={goToAddProduct}>
+                Add product
+              </Button>
+            )}
+            {!token ? (
+              <Button color="inherit" onClick={goToLogin}>
+                Login
+              </Button>
+            ) : (
+              <Button color="inherit" onClick={logOut}>
+                LogOut
+              </Button>
+            )}
           </Toolbar>
         </AppBar>
       </Box>
