@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Paper, TextField, Grid, Button, Box } from "@mui/material";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 import axios from "axios";
 
