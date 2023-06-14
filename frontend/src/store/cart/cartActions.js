@@ -13,3 +13,9 @@ export const removeFromCart = (id) => {
     id: id,
   };
 };
+
+export const emptyCart = () => {
+  return {
+    type: actionTypes.EMPTY_CART,
+  };
+};

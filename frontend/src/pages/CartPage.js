@@ -30,14 +30,18 @@ import FlagIcon from "@mui/icons-material/Flag";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 import MarkunreadMailbox from "@mui/icons-material/MarkunreadMailbox";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
-import emptyCart from "../img/emptycart.png";
+import emptyCartImg from "../img/emptycart.png";
 
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 
-import { addToCart, removeFromCart } from "../store/cart/cartActions";
+import {
+  addToCart,
+  removeFromCart,
+  emptyCart,
+} from "../store/cart/cartActions";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 
@@ -141,6 +145,7 @@ const CartPage = () => {
       });
       console.log(response.data);
       if (response.data === "Order saved to the database!") {
+        dispatch(emptyCart());
         setConfirmShow(false);
         navigate("/");
       }
@@ -442,7 +447,7 @@ const CartPage = () => {
               </Button>
             </Grid>
             <Grid item>
-              <img src={emptyCart} alt="empty cart" />
+              <img src={emptyCartImg} alt="empty cart" />
             </Grid>
           </Grid>
         </>

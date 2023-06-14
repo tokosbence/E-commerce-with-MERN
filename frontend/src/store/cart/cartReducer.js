@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_ITEM } from "./actionTypes";
+import { ADD_TO_CART, REMOVE_ITEM, EMPTY_CART } from "./actionTypes";
 
 const initState = {
   addedItems: [],
@@ -77,6 +77,12 @@ const cartReducer = (state = initState, action) => {
         total: newTotal,
       };
     }
+  } else if (action.type === EMPTY_CART) {
+    return {
+      ...state,
+      addedItems: [],
+      total: 0,
+    };
   } else {
     /* 
   if (action.type === ADD_QUANTITY) {
