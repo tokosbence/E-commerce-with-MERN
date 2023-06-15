@@ -142,7 +142,7 @@ const CartPage = () => {
       console.log(response.data);
       if (response.data === "Order saved to the database!") {
         setConfirmShow(false);
-        navigate("/");
+        navigate("/orders");
       }
     } catch (e) {
       console.log(e);

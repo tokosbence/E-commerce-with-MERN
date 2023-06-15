@@ -24,4 +24,11 @@ router.post("/create", async (req, res) => {
   res.send("Order saved to the database!");
 });
 
+router.get("/:userId", async (req, res) => {
+  const userID = req.params.userId;
+  const orderList = await Order.find({ userID: userID });
+  console.log(orderList);
+  res.send(orderList);
+});
+
 module.exports = router;

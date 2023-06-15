@@ -11,9 +11,11 @@ import { IconButton } from "@mui/material";
 import { useSelector } from "react-redux";
 import logo from "../img/logo_2.png";
 import ButtonBase from "@mui/material/ButtonBase";
+import { AuthContext } from "../context/authContext";
 
 const NavBar = () => {
   const navigate = useNavigate();
+  const authContext = React.useContext(AuthContext);
   const items = useSelector((state) => state.cartStore.addedItems);
   const [token, setToken] = useState();
   const [isAdmin, setIsAdmin] = useState();
@@ -37,11 +39,18 @@ const NavBar = () => {
 
   const logOut = () => {
     localStorage.clear();
+    setIsAdmin();
+    setToken();
+    authContext.logout();
     navigate("/");
   };
 
-  const goToOrders = () => {
+  const goToCart = () => {
     navigate("/cart");
+  };
+
+  const goToOrders = () => {
+    navigate("/orders");
   };
 
   return (
@@ -57,8 +66,12 @@ const NavBar = () => {
               />
             </ButtonBase>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} />
-
-            <IconButton onClick={goToOrders}>
+            {token && (
+              <Button color="inherit" onClick={goToOrders}>
+                Orders
+              </Button>
+            )}
+            <IconButton onClick={goToCart}>
               <Badge badgeContent={items.length} color="secondary">
                 <ShoppingCartIcon />
               </Badge>

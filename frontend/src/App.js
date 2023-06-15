@@ -11,6 +11,7 @@ import CartPage from "./pages/CartPage";
 import { AuthContext } from "./context/authContext";
 import { useState } from "react";
 import AdminPage from "./pages/AdminPage";
+import OrdersPage from "./pages/OrdersPage";
 
 function App() {
   const [userLoggedData, setUserLoggedData] = useState({
@@ -68,6 +69,14 @@ function App() {
           element={
             <RequiredAuth>
               <AdminPage />
+            </RequiredAuth>
+          }
+        />
+        <Route
+          path="/orders"
+          element={
+            <RequiredAuth>
+              <OrdersPage />
             </RequiredAuth>
           }
         />
