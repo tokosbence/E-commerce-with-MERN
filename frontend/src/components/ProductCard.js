@@ -100,7 +100,7 @@ const ProductCard = (props) => {
         </CardContent>
 
         <CardActions>
-          {token && isAdmin ? (
+          {token && isAdmin === "true" ? (
             <Stack direction="row" gap={2}>
               <Button
                 color="primary"

@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.filters{
+  padding: 3rem 2.5rem;
+}
+
+.products{
+  padding: 1.5rem 3.5rem;
+}

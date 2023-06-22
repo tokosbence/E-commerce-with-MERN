@@ -108,8 +108,8 @@ const OrdersPage = () => {
       >
         {orders !== undefined &&
           orders.map((Orderitem) => (
-            <Grid item key={Orderitem.id}>
-              <Card key={Orderitem.id} sx={{ height: 400 }}>
+            <Grid item key={Orderitem._id}>
+              <Card key={Orderitem._id} sx={{ height: 400 }}>
                 <CardContent>
                   <Stack direction="row" justifyContent="space-between">
                     <div>
@@ -121,7 +121,7 @@ const OrdersPage = () => {
                         Order number:
                       </Typography>
                       <Typography sx={{ fontSize: 14 }} color="text.primary">
-                        {Orderitem.id}
+                        {Orderitem._id}
                       </Typography>
                     </div>
                     <div>
@@ -161,7 +161,7 @@ const OrdersPage = () => {
                           <TableBody>
                             {JSON.parse(Orderitem.items).map((item) => (
                               <TableRow
-                                key={item.id}
+                                key={item._id}
                                 sx={{
                                   "&:last-child td, &:last-child th": {
                                     border: 0,

@@ -66,17 +66,19 @@ const NavBar = () => {
               />
             </ButtonBase>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} />
-            {token && (
+            {token && isAdmin === "false" && (
               <Button color="inherit" onClick={goToOrders}>
                 Orders
               </Button>
             )}
-            <IconButton onClick={goToCart}>
-              <Badge badgeContent={items.length} color="secondary">
-                <ShoppingCartIcon />
-              </Badge>
-            </IconButton>
-            {isAdmin && (
+            {isAdmin === "false" && (
+              <IconButton onClick={goToCart}>
+                <Badge badgeContent={items.length} color="secondary">
+                  <ShoppingCartIcon />
+                </Badge>
+              </IconButton>
+            )}
+            {isAdmin === "true" && (
               <Button color="inherit" onClick={goToAddProduct}>
                 Add product
               </Button>

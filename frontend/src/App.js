@@ -24,6 +24,7 @@ function App() {
     //console.log("app token", token);
     localStorage.setItem("token", token);
     localStorage.setItem("userId", userId);
+    localStorage.setItem("isAdmin", isAdmin);
     setUserLoggedData({ token: token, userId: userId, isAdmin: isAdmin });
   };
 
@@ -31,6 +32,7 @@ function App() {
     setUserLoggedData({ token: null, userId: null, isAdmin: false });
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
+    localStorage.removeItem("isAdmin");
   };
 
   return (
