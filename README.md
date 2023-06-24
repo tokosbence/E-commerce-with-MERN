@@ -31,7 +31,7 @@ This project offers a range of features, including user authentication and autho
 
 Once you have cloned the repository, you will need to install the required npm packages. Follow these steps:
 
-###Frontend:
+## Frontend:
 - Navigate to the "frontend" directory:
   - cd /frontend
 - Install the necessary packages:
@@ -39,7 +39,7 @@ Once you have cloned the repository, you will need to install the required npm p
 - Start the development server:
   - npm start
 
-###Backend:
+## Backend:
 - Go to the "backend" directory:
   - cd /backend
 - Install the required packages:
