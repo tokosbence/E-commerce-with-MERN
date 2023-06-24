@@ -22,10 +22,10 @@ This project offers a range of features, including user authentication and autho
 
 ## Technologies
 
-- MongoDB: Brief description of MongoDB and its role in the project
-- Express.js: Brief description of Express.js and its role in the project
-- React.js: Brief description of React.js and its role in the project
-- Node.js: Brief description of Node.js and its role in the project
+- MongoDB
+- Express.js
+- React.js
+- Node.js
 
 ## Installation
 
