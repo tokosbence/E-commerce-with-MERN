@@ -31,18 +31,18 @@ This project offers a range of features, including user authentication and autho
 
 Once you have cloned the repository, you will need to install the required npm packages. Follow these steps:
 
-  Frontend:
-    Navigate to the "frontend" directory:
+  ###Frontend:
+    - Navigate to the "frontend" directory:
       cd /frontend
-    Install the necessary packages:
+    - Install the necessary packages:
       npm install
-    Start the development server:
+    - Start the development server:
       npm start
 
-  Backend:
-    Go to the "backend" directory:
+  ###Backend:
+    - Go to the "backend" directory:
       cd /backend
-    Install the required packages:
+    - Install the required packages:
       npm install
-    Run the backend server:
+    - Run the backend server:
       node index.js
